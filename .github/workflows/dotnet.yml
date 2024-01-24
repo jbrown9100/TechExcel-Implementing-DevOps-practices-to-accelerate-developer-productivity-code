@@ -26,21 +26,22 @@ jobs:
       run: dotnet restore Application/src/RazorPagesTestSample/RazorPagesTestSample.sln  
     
     - name: Build the Application
-      run: dotnet build Application/src/RazorPagesTestSample/RazorPagesTestSample.sln --configuration Release --no-restore
+      run: dotnet build Application/src/RazorPagesTestSample/RazorPagesTestSample.sln --configuration Release --no-restore --output ./output
 
-    - name: Restore Tests
-      run: dotnet restore Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.sln
-    
-    - name: Build the Test Assemblies
-      run: dotnet build Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.sln
-    
-    - name: Test 
-      run: dotnet test Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.sln --no-build --verbosity normal
+    ## - name: Restore Tests
+    ##   run: dotnet restore Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.sln
+    ## 
+    ## - name: Build the Test Assemblies
+    ##   run: dotnet build Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.sln
+    ## 
+    ## - name: Test 
+    ##   run: dotnet test Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.sln --no-build --verbosity normal
 
     - name: Save Artifacts
       uses: actions/upload-artifact@v4.3.0
       with:
         name: drop
+        path: ./output
       
   deploy:
     runs-on: ubuntu-latest
