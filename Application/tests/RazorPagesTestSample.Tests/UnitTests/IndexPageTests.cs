@@ -17,8 +17,10 @@ using RazorPagesTestSample.Data;
 
 namespace RazorPagesTestSample.Tests.UnitTests
 {
+
     public class IndexPageTests
     {
+
         [Fact]
         public async Task OnGetAsync_PopulatesThePageModel_WithAListOfMessages()
         {
