@@ -22,17 +22,17 @@ jobs:
       with:
         dotnet-version: 8.0.x
    
-    - name: Restore the Application
-      run: dotnet restore **/Application/src/RazorPagesTestSample/*.sln
+    - name: Restore Application
+      run: dotnet restore Application/src/RazorPagesTestSample/RazorPagesTestSample.sln  
     
     - name: Build the Application
-      run: dotnet build **/Application/src/RazorPagesTestSample/*sln --no-restore
-   
-    - name: Restore the Tests
-      run: dotnet restore **/Application/tests/RazorPagesTestSample.Tests/*.sln
+      run: dotnet build Application/src/RazorPagesTestSample/RazorPagesTestSample.sln --configuration Release --no-restore
+
+    - name: Restore Tests
+      run: dotnet restore Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.sln
     
     - name: Build the Test Assemblies
-      run: dotnet build **/Application/tests/RazorPagesTestSample.Tests/*.sln --no-restore
+      run: dotnet build Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.sln --configuration Release --no-restore
     
     - name: Test 
-      run: dotnet test **/Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.sln --no-build --verbosity normal
+      run: dotnet test Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.sln --no-build --verbosity normal
