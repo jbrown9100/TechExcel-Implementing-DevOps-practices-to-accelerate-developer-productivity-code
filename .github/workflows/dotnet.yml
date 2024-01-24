@@ -36,3 +36,18 @@ jobs:
     
     - name: Test 
       run: dotnet test Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.sln --no-build --verbosity normal
+
+    - name: Save Artifacts
+      uses: actions/upload-artifact@v4.3.0
+      with:
+        name: drop
+      
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v4.1.1
+      with:
+        name: drop
+        
