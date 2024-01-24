@@ -16,13 +16,23 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore **/*.sln
-    - name: Build
-      run: dotnet build **/*sln --no-restore
-    - name: Test
+   
+    - name: Restore the Application
+      run: dotnet restore **/Application/src/RazorPagesTestSample/*.sln
+    
+    - name: Build the Application
+      run: dotnet build **/Application/src/RazorPagesTestSample/*sln --no-restore
+   
+    - name: Restore the Tests
+      run: dotnet restore **/Application/tests/RazorPagesTestSample.Tests/*.sln
+    
+    - name: Build the Test Assemblies
+      run: dotnet build **/Application/tests/RazorPagesTestSample.Tests/*.sln --no-restore
+    
+    - name: Test 
       run: dotnet test **/Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.sln --no-build --verbosity normal
